@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import React from 'react';
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
 import Header from '@/components/Header/Header';
 
@@ -27,9 +28,11 @@ export default function RootLayout({
   return (
     <html lang="ua" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <Header />
+        <TanStackProvider>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
+        </TanStackProvider>
       </body>
     </html>
   );
