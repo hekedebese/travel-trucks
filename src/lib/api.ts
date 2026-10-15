@@ -1,0 +1,18 @@
+import axios from 'axios';
+
+import { Camper } from '@/types/camper';
+
+export type CampersListResponse = {
+  page: number;
+  perPage: number;
+  total: number;
+  totalPages: number;
+  campers: Camper[];
+};
+
+axios.defaults.baseURL = 'https://campers-api.goit.study';
+
+export const getCampers = async () => {
+  const res = await axios.get<CampersListResponse>('/campers');
+  return res.data;
+};
