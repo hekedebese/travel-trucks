@@ -7,7 +7,7 @@ import { FiMap } from 'react-icons/fi';
 import { LiaSitemapSolid } from 'react-icons/lia';
 import { BsFillFuelPumpFill } from 'react-icons/bs';
 import { FaCar } from 'react-icons/fa6';
-import css from './CamperItem.module.css';
+import css from '../Icons.module.css';
 
 type Props = {
   item: Camper;
@@ -16,14 +16,17 @@ type Props = {
 const CamperItem = ({ item }: Props) => {
   const formattedLocation = item.location.split(', ').reverse().join(', ');
   return (
-    <li>
+    <li key={item.id}>
       <div>
-        <Image
-          src={item.coverImage}
-          alt={item.description}
-          width={219}
-          height={240}
-        />
+        {item.coverImage && (
+          <Image
+            src={item.coverImage}
+            alt={item.description}
+            width={219}
+            height={240}
+            loading="eager"
+          />
+        )}
       </div>
 
       <div>

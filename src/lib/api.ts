@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Camper } from '@/types/camper';
+import { Camper, CamperReview } from '@/types/camper';
 
 export type CampersListResponse = {
   page: number;
@@ -19,5 +19,10 @@ export const getCampers = async () => {
 
 export const getSingleCamper = async (camperId: string) => {
   const res = await axios.get<Camper>(`/campers/${camperId}`);
+  return res.data;
+};
+
+export const getCamperReviews = async (camperId: string) => {
+  const res = await axios.get<CamperReview[]>(`/campers/${camperId}/reviews`);
   return res.data;
 };

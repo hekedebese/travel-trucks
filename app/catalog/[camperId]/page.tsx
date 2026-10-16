@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getSingleCamper } from '@/src/lib/api';
 import {
   QueryClient,
@@ -10,7 +11,7 @@ type Props = {
   params: Promise<{ camperId: string }>;
 };
 
-const CamperDetails = async ({ params }: Props) => {
+async function CamperDetailsContent({ params }: Props) {
   const { camperId } = await params;
   const queryClient = new QueryClient();
 
@@ -24,6 +25,12 @@ const CamperDetails = async ({ params }: Props) => {
       <CamperDetailsClient />
     </HydrationBoundary>
   );
-};
+}
 
-export default CamperDetails;
+export default function CamperDetails({ params }: Props) {
+  return (
+    <Suspense fallback={<p>Loading camper...</p>}>
+      <CamperDetailsContent params={params} />
+    </Suspense>
+  );
+}

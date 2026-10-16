@@ -1,3 +1,13 @@
+import { AmenitiesTag } from '@/constants/amenities';
+
+export interface CamperImage {
+  id: string;
+  camperId: string;
+  thumb: string;
+  original: string;
+  order: number;
+}
+
 export interface Camper {
   id: string;
   name: string;
@@ -13,9 +23,19 @@ export interface Camper {
   consumption: string;
   transmission: string;
   engine: string;
-  amenities: string[];
+  amenities: AmenitiesTag[];
   createdAt: string;
   updatedAt: string;
   coverImage: string;
   totalReviews: number;
+  gallery?: CamperImage[];
+}
+
+export interface CamperReview {
+  id: string;
+  camperId: string;
+  reviewer_name: string;
+  reviewer_rating: number | 0;
+  comment: string;
+  createdAt: string;
 }
