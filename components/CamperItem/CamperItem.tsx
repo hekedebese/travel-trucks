@@ -25,6 +25,7 @@ const CamperItem = ({ item }: Props) => {
           alt={item.name}
           width={219}
           height={240}
+          loading="eager"
         />
       )}
 
