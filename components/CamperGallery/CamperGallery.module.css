@@ -1,0 +1,34 @@
+.gallery {
+  width: 638px;
+}
+
+.main {
+  margin-bottom: 27px;
+  border-radius: 17px;
+}
+
+.mainImage {
+  display: block;
+  width: 100%;
+  height: 515px;
+  object-fit: cover;
+}
+
+.thumb {
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.thumbs :global(.swiper-slide-thumb-active) {
+  border-color: var(--grey-green);
+}
+
+.thumbImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}

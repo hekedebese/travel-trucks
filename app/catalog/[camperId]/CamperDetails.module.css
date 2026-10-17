@@ -1,0 +1,245 @@
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 88px;
+}
+
+.side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card {
+  padding: 24px;
+  background: var(--inputs);
+  border-radius: 16px;
+}
+
+.name {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--main);
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.price {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--main);
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.detailsTitle {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--main);
+  line-height: 133%;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.badge {
+  padding: 12px 18px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--main);
+  background: var(--badges);
+  mix-blend-mode: multiply;
+  border-radius: 100px;
+  text-transform: capitalize;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.value {
+  text-transform: capitalize;
+}
+
+.reviewsTitle {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--main);
+  line-height: 133%;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review {
+  background: var(--inputs);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.reviewHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--white);
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--grey-green);
+}
+
+.reviewer {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.comment {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.booking {
+  padding: 44px 57px;
+  background: #fff;
+  border: 1px solid var(--gray-light);
+  border-radius: 20px;
+}
+
+.bookingTitle {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+
+.bookingText {
+  margin-bottom: 24px;
+  color: var(--gray);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input {
+  width: 100%;
+  padding: 18px 337px 18px 18px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--main);
+  background: var(--inputs);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+  transition-property: border-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input::placeholder {
+  color: var(--gray);
+}
+
+.input:focus {
+  border-color: var(--grey-green);
+}
+
+.send {
+  padding: 16px 60px;
+  font-size: 16px;
+  color: var(--white);
+  background: var(--grey-green);
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.send:hover {
+  background: var(--green-hover);
+}
