@@ -3,13 +3,18 @@
 import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getCampers } from '@/src/lib/api';
-import CamperFilters, { Filters } from '../CamperFilters/CamperFilters';
+import CamperFilter, {
+  Filters,
+} from '@/components/CamperFilters/CamperFilters';
 import CamperList from '../CamperList/CamperList';
+import Loader from '../Loader/Loader';
+import NoCampers from '../NoCampers/NoCampers';
 
 const PER_PAGE = 4;
 
 const Catalog = () => {
   const [filters, setFilters] = useState<Filters>({});
+  const [resetKey, setResetKey] = useState(0);
 
   const {
     data,
@@ -29,23 +34,32 @@ const Catalog = () => {
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
+  const handleReset = () => {
+    setFilters({});
+    setResetKey((prev) => prev + 1);
+  };
+
   return (
     <div>
-      <CamperFilters onSearch={setFilters} />
+      <CamperFilter key={resetKey} onSearch={setFilters} />
 
       <div>
-        {isLoading && <p>Loading...</p>}
         {isError && <p>Something went wrong</p>}
-        {!isLoading && !isError && campers.length === 0 && <p>Nothing found</p>}
+
+        {!isLoading && !isError && campers.length === 0 && (
+          <NoCampers onClear={handleReset} />
+        )}
 
         {campers.length > 0 && <CamperList campers={campers} />}
 
         {hasNextPage && (
           <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading...' : 'Load more'}
+            Load more
           </button>
         )}
       </div>
+
+      {(isLoading || isFetchingNextPage) && <Loader />}
     </div>
   );
 };
