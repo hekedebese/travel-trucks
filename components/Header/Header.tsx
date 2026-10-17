@@ -28,7 +28,9 @@ const Header = () => {
           <li>
             <Link
               href="/catalog"
-              className={`${css.navLink} ${pathname === '/catalog' ? css.active : ''}`}
+              className={`${css.navLink} ${
+                pathname.startsWith('/catalog') ? css.active : ''
+              }`}
             >
               Catalog
             </Link>

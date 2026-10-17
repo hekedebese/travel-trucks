@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getCampersFilters } from '@/src/lib/api';
+import { FiMap, FiX } from 'react-icons/fi';
 
-import { FiMap } from 'react-icons/fi';
+import css from './CamperFilters.module.css';
 
 export interface Filters {
   location?: string;
@@ -47,23 +48,27 @@ const CamperFilters = ({ onSearch }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <FiMap />
-        <span>Location</span>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
+    <form className={css.form} onSubmit={handleSubmit}>
+      <label className={css.location}>
+        <span className={css.label}>Location</span>
+        <div className={css.inputWrap}>
+          <FiMap className={css.inputIcon} />
+          <input
+            className={css.input}
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="City"
+          />
+        </div>
       </label>
 
-      <h2>Filters</h2>
+      <h2 className={css.title}>Filters</h2>
 
-      <fieldset>
-        <legend>Camper form</legend>
+      <fieldset className={css.group}>
+        <legend className={css.legend}>Camper form</legend>
         {data?.forms.map((item) => (
-          <label key={item}>
+          <label key={item} className={css.radio}>
             <input
               type="radio"
               name="form"
@@ -76,10 +81,10 @@ const CamperFilters = ({ onSearch }: Props) => {
         ))}
       </fieldset>
 
-      <fieldset>
-        <legend>Engine</legend>
+      <fieldset className={css.group}>
+        <legend className={css.legend}>Engine</legend>
         {data?.engines.map((item) => (
-          <label key={item}>
+          <label key={item} className={css.radio}>
             <input
               type="radio"
               name="engine"
@@ -92,10 +97,10 @@ const CamperFilters = ({ onSearch }: Props) => {
         ))}
       </fieldset>
 
-      <fieldset>
-        <legend>Transmission</legend>
+      <fieldset className={css.group}>
+        <legend className={css.legend}>Transmission</legend>
         {data?.transmissions.map((item) => (
-          <label key={item}>
+          <label key={item} className={css.radio}>
             <input
               type="radio"
               name="transmission"
@@ -108,8 +113,11 @@ const CamperFilters = ({ onSearch }: Props) => {
         ))}
       </fieldset>
 
-      <button type="submit">Search</button>
-      <button type="button" onClick={handleClear}>
+      <button className={css.search} type="submit">
+        Search
+      </button>
+      <button className={css.clear} type="button" onClick={handleClear}>
+        <FiX size={24} />
         Clear filters
       </button>
     </form>

@@ -7,7 +7,8 @@ import { FiMap } from 'react-icons/fi';
 import { LiaSitemapSolid } from 'react-icons/lia';
 import { BsFillFuelPumpFill } from 'react-icons/bs';
 import { FaCar } from 'react-icons/fa6';
-import css from '../Icons.module.css';
+import icon from '../Icons.module.css';
+import css from './CamperItem.module.css';
 
 type Props = {
   item: Camper;
@@ -16,55 +17,62 @@ type Props = {
 const CamperItem = ({ item }: Props) => {
   const formattedLocation = item.location.split(', ').reverse().join(', ');
   return (
-    <li key={item.id}>
-      <div>
-        {item.coverImage && (
-          <Image
-            src={item.coverImage}
-            alt={item.description}
-            width={219}
-            height={240}
-            loading="eager"
-          />
-        )}
-      </div>
+    <li className={css.item}>
+      {item.coverImage && (
+        <Image
+          className={css.image}
+          src={item.coverImage}
+          alt={item.name}
+          width={219}
+          height={240}
+        />
+      )}
 
-      <div>
-        <div>
-          <h3>{item.name}</h3>
-          <p>&#x20AC;{item.price}</p>
-        </div>
+      <div className={css.wraper}>
+        <div className={css.info}>
+          <div className={css.top}>
+            <h3 className={css.name}>{item.name}</h3>
+            <p className={css.price}>&#x20AC;{item.price}</p>
+          </div>
 
-        <div>
-          <p>
-            <FaStar className={css.starIcon} />
-            <span>
-              {item.rating}({item.totalReviews} Reviews)
-            </span>
-          </p>
-          <p>
-            <FiMap className={css.mapIcon} />
-            <span>{formattedLocation}</span>
-          </p>
+          <div className={css.meta}>
+            <p className={css.metaItem}>
+              <FaStar className={icon.starIcon} />
+              <span>
+                {item.rating}({item.totalReviews} Reviews)
+              </span>
+            </p>
+            <p className={css.metaItem}>
+              <FiMap className={icon.mapIcon} />
+              <span>{formattedLocation}</span>
+            </p>
+          </div>
+
+          <p className={css.description}>{item.description}</p>
+
+          <ul className={css.badges}>
+            <li className={css.badge}>
+              <BsFillFuelPumpFill className={icon.fuelPumpIcon} />
+              <span>{item.engine}</span>
+            </li>
+            <li className={css.badge}>
+              <LiaSitemapSolid className={icon.transmissionIcon} />
+              <span>{item.transmission}</span>
+            </li>
+            <li className={css.badge}>
+              <FaCar className={icon.carIcon} />
+              <span>{item.form.replace('_', ' ')}</span>
+            </li>
+          </ul>
+
+          <Link
+            className={css.button}
+            href={`/catalog/${item.id}`}
+            target="_blank"
+          >
+            Show more
+          </Link>
         </div>
-        <p>{item.description}</p>
-        <ul>
-          <li>
-            <BsFillFuelPumpFill className={css.fuelPumpIcon} />
-            <span>{item.engine}</span>
-          </li>
-          <li>
-            <LiaSitemapSolid className={css.transmissionIcon} />
-            <span>{item.transmission}</span>
-          </li>
-          <li>
-            <FaCar className={css.carIcon} />
-            <span>{item.form}</span>
-          </li>
-        </ul>
-        <Link href={`/catalog/${item.id}`} target="_blank">
-          Show more
-        </Link>
       </div>
     </li>
   );

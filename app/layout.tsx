@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import React from 'react';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import { Suspense } from 'react';
 
 import { Inter } from 'next/font/google';
 
@@ -27,7 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.variable}>
         <TanStackProvider>
-          <Header />
+          <Suspense fallback={null}>
+            <Header />
+          </Suspense>
 
           <main>{children}</main>
         </TanStackProvider>

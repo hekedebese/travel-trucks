@@ -9,6 +9,7 @@ import CamperFilter, {
 import CamperList from '../CamperList/CamperList';
 import Loader from '../Loader/Loader';
 import NoCampers from '../NoCampers/NoCampers';
+import css from './Catalog.module.css';
 
 const PER_PAGE = 4;
 
@@ -40,10 +41,10 @@ const Catalog = () => {
   };
 
   return (
-    <div>
+    <div className={css.wrapper}>
       <CamperFilter key={resetKey} onSearch={setFilters} />
 
-      <div>
+      <div className={css.content}>
         {isError && <p>Something went wrong</p>}
 
         {!isLoading && !isError && campers.length === 0 && (
@@ -53,7 +54,11 @@ const Catalog = () => {
         {campers.length > 0 && <CamperList campers={campers} />}
 
         {hasNextPage && (
-          <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            className={css.loadMore}
+          >
             Load more
           </button>
         )}
