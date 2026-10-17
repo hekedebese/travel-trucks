@@ -1,14 +1,11 @@
-import { getCampers } from '@/src/lib/api';
-import CamperList from '@/components/CamperList/CamperList';
+import type { Metadata } from 'next';
+import Catalog from '@/components/Catalog/Catalog';
 
-const Catalog = async () => {
-  const campers = await getCampers();
-
-  return (
-    <section>
-      {campers?.campers?.length > 0 && <CamperList campers={campers.campers} />}
-    </section>
-  );
+export const metadata: Metadata = {
+  title: 'Catalog | TravelTrucks',
+  description: 'Browse and filter campers available for rent',
 };
 
-export default Catalog;
+export default function CatalogPage() {
+  return <Catalog />;
+}

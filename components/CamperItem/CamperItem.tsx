@@ -47,7 +47,7 @@ const CamperItem = ({ item }: Props) => {
             <span>{formattedLocation}</span>
           </p>
         </div>
-        <p>{item.description.slice(0, 60)}</p>
+        <p>{item.description}</p>
         <ul>
           <li>
             <BsFillFuelPumpFill className={css.fuelPumpIcon} />
@@ -62,7 +62,9 @@ const CamperItem = ({ item }: Props) => {
             <span>{item.form}</span>
           </li>
         </ul>
-        <Link href={`/catalog/${item.id}`}>Show more</Link>
+        <Link href={`/catalog/${item.id}`} target="_blank">
+          Show more
+        </Link>
       </div>
     </li>
   );
