@@ -10,7 +10,7 @@ export default function Home() {
           You can find everything you want in our catalog
         </p>
         <Link href="/catalog" className={css.link}>
-          View now
+          View Now
         </Link>
       </div>
     </section>
