@@ -25,6 +25,15 @@ export interface CampersQuery {
   engine?: string;
 }
 
+export interface BookingRequest {
+  name: string;
+  email: string;
+}
+
+export interface BookingResponse {
+  message: string;
+}
+
 axios.defaults.baseURL = 'https://campers-api.goit.study';
 
 export const getCampers = async (params: CampersQuery = {}) => {
@@ -47,5 +56,16 @@ export const getSingleCamper = async (camperId: string) => {
 
 export const getCamperReviews = async (camperId: string) => {
   const res = await axios.get<CamperReview[]>(`/campers/${camperId}/reviews`);
+  return res.data;
+};
+
+export const createBookingRequest = async (
+  camperId: string,
+  data: BookingRequest,
+) => {
+  const res = await axios.post<BookingResponse>(
+    `/campers/${camperId}/booking-requests`,
+    data,
+  );
   return res.data;
 };

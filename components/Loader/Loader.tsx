@@ -1,14 +1,20 @@
 import css from './Loader.module.css';
 
-const Loader = () => {
+type Props = {
+  title?: string;
+  text?: string;
+};
+
+const Loader = ({
+  title = 'Loading tracks...',
+  text = 'Please wait while we fetch the best travel trucks for you',
+}: Props) => {
   return (
     <div className={css.backdrop} role="status">
       <div className={css.box}>
         <div className={css.spinner} />
-        <h2 className={css.title}>Loading tracks...</h2>
-        <p className={css.text}>
-          Please wait while we fetch the best travel trucks for you
-        </p>
+        <h2 className={css.title}>{title}</h2>
+        <p className={css.text}>{text}</p>
       </div>
     </div>
   );

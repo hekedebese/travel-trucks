@@ -59,7 +59,7 @@ const CamperGallery = ({ images, name }: Props) => {
               src={img.thumb}
               alt={`${name} thumbnail ${index + 1}`}
               width={135}
-              height={145}
+              height={135}
             />
           </SwiperSlide>
         ))}

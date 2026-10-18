@@ -110,3 +110,8 @@
 .send:hover {
   background: var(--green-hover);
 }
+
+.send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

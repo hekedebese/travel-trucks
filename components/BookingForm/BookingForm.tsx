@@ -4,6 +4,13 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FiAlertCircle } from 'react-icons/fi';
 import css from './BookingForm.module.css';
+import { createBookingRequest, BookingRequest } from '@/src/lib/api';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+
+type Props = {
+  camperId: string;
+};
 
 const initialValues = {
   name: '',
@@ -21,7 +28,17 @@ const validationSchema = Yup.object({
     .required('Please enter your email.'),
 });
 
-const BookingForm = () => {
+const BookingForm = ({ camperId }: Props) => {
+  const mutation = useMutation({
+    mutationFn: (data: BookingRequest) => createBookingRequest(camperId, data),
+    onSuccess: (data) => {
+      toast.success(data.message);
+    },
+    onError: () => {
+      toast.error('Something went wrong. Please try again.');
+    },
+  });
+
   return (
     <div className={css.booking}>
       <h2 className={css.title}>Book your campervan now</h2>
@@ -33,7 +50,10 @@ const BookingForm = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          actions.resetForm();
+          mutation.mutate(
+            { name: values.name.trim(), email: values.email.trim() },
+            { onSuccess: () => actions.resetForm() },
+          );
         }}
       >
         {({ values, errors, touched }) => {
@@ -80,8 +100,12 @@ const BookingForm = () => {
                 {emailError && <p className={css.errorText}>{errors.email}</p>}
               </div>
 
-              <button className={css.send} type="submit">
-                Send
+              <button
+                className={css.send}
+                type="submit"
+                disabled={mutation.isPending}
+              >
+                {mutation.isPending ? 'Sending...' : 'Send'}
               </button>
             </Form>
           );

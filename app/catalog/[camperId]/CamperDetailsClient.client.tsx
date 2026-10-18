@@ -12,6 +12,7 @@ import { FiMap } from 'react-icons/fi';
 
 import icon from '@/components/Icons.module.css';
 import css from './CamperDetails.module.css';
+import Loader from '@/components/Loader/Loader';
 
 const CamperDetailsClient = () => {
   const { camperId } = useParams<{ camperId: string }>();
@@ -32,7 +33,14 @@ const CamperDetailsClient = () => {
 
   const formattedLocation = camper?.location.split(', ').reverse().join(', ');
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <Loader
+        title="Loading camper..."
+        text="Please wait while we fetch the details"
+      />
+    );
+  }
 
   if (error || !camper) return <p>Some error..</p>;
 
@@ -126,7 +134,7 @@ const CamperDetailsClient = () => {
             ))}
           </ul>
 
-          <BookingForm />
+          <BookingForm camperId={camperId} />
         </div>
       </section>
     </div>
