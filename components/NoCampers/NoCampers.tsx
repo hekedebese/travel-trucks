@@ -15,7 +15,6 @@ const NoCampers = ({ onClear }: Props) => {
         alt=""
         width={488}
         height={463}
-        loading="eager"
       />
 
       <h2 className={css.title}>No campers found</h2>
