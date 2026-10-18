@@ -107,5 +107,5 @@ src/lib/api.ts              # API requests
 
 ## Author
 
-**Your Name**
+**Nikita Anohin**
 GitHub: [@hekedebese](https://github.com/hekedebese)
